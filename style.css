@@ -1,0 +1,129 @@
+:root {
+    --primary: #8A4FFF;
+    --dark: #131A26;
+    --grey: #CCC;
+    --light: #EEE;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Algerian,sans-serif;
+}
+
+body{
+    background-color: rgb(243, 255, 186);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header{
+    background-color: #3A6B35;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 3px solid #CBD18F;
+}
+
+header h1{
+    color: #E3B448;
+    font-size: 50px;
+    text-transform: uppercase;
+    text-shadow: -4px 1px white;
+}
+
+main{
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ flex: 1 1 0%;
+}
+
+.game {
+ display: grid;
+ grid-template-columns: repeat(3, auto); 
+}
+
+.box {
+ position: relative;
+ border: 3.75px double var(--dark);
+ width: 100px;
+ padding-top: 100%;
+ cursor: pointer;
+}
+
+.box:nth-child(1),
+.box:nth-child(2),
+.box:nth-child(3) {
+ border-top: none;
+}
+.box:nth-child(1),
+.box:nth-child(4),
+.box:nth-child(7) {
+ border-left: none;
+}
+.box:nth-child(7),
+.box:nth-child(8),
+.box:nth-child(9) {
+ border-bottom: none;
+}
+.box:nth-child(9),
+.box:nth-child(6),
+.box:nth-child(3) {
+ border-right: none;
+}
+
+.box.x,
+.box.o {
+ cursor: not-allowed;
+}
+
+.box.o::before,
+.game.turn-o .box:not(.x):not(.o):hover::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 60px;
+  height: 60px;
+  border: 7.5px solid var(--dark);
+  border-radius: 50%;
+}   
+
+.box.x::after,
+.box.x::before,
+.game.turn-x .box:not(.x):not(.o):hover::after,
+.game.turn-x .box:not(.x):not(.o):hover::before {
+ content: '';
+ display: block;
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ width: 7.5px;
+ height: 90px;
+ background-color: var(--dark);
+ border-radius: 99px;
+}
+
+.box.x::after,
+.game.turn-x .box:not(.x):not(.o):hover::after{
+ transform: translate(-50%,-50%) rotate(45deg); 
+}
+.box.x::before,
+.game.turn-x .box:not(.x):not(.o):hover::before{
+ transform: translate(-50%,-50%) rotate(-45deg); 
+}
+
+.game.turn-x .box:not(.x):not(.o):hover::after,
+.game.turn-x .box:not(.x):not(.o):hover::before {
+ background-color: var(--grey);
+}
+
+.game.game.turn-o .box:not(.x):not(.o):hover::before{
+ border: 7.5px solid var(--grey);
+}
